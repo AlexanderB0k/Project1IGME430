@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Our simple HTTP server</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script>
+
+  </script>
+</head>
+
+<body>
+  <section id="top">
+    <h1>Project 1</h1>
+
+    <!-- Get all Pokemon -->
+    <form id="getAllPokemon" action="/GetAllPoke" method="get">
+      <h3>Get All Pokemon</h3>
+      <input type="submit" value="Fetch" />
+      <select name="method">
+        <option value="get">GET</option>
+        <option value="head">HEAD</option>
+      </select>
+    </form>
+
+    <br>
+
+    <!-- Get by name, id, and type -->
+    <form id="searchByNameIdType" action="/GetAllPoke" method="get">
+      <h3>Search by Pokeman type</h3>
+
+      <label for="nameField1">Name:</label>
+      <input id="nameField1" type="text" name="name" />
+
+      <label for="idField1">ID:</label>
+      <input id="idField1" type="text" name="id" />
+
+      <label for="typeField1">Type:</label>
+      <input id="typeField1" type="text" name="type" />
+
+      <input type="submit" value="Search" />
+      <select name="method">
+        <option value="get">GET</option>
+        <option value="head">HEAD</option>
+      </select>
+    </form>
+
+    <!-- Get by name -->
+    <form id="searchByName" action="/GetName" method="get">
+      <h3>Search by Name</h3>
+
+      <label for="nameField2">Name:</label>
+      <input id="nameField2" type="text" name="name" />
+
+      <input type="submit" value="Search" />
+      <select name="method">
+        <option value="get">GET</option>
+        <option value="head">HEAD</option>
+      </select>
+    </form>
+
+    <!-- Get by ID and type -->
+    <form id="searchByIdType" action="/GetPokemons" method="get">
+      <h3>Search by ID and Type</h3>
+
+      <label for="idField2">ID:</label>
+      <input id="idField2" type="text" name="id" />
+
+      <label for="typeField2">Type:</label>
+      <input id="typeField2" type="text" name="type" />
+
+      <input type="submit" value="Search" />
+      <select name="method">
+        <option value="get">GET</option>
+        <option value="head">HEAD</option>
+      </select>
+    </form>
+
+    <!-- Post Pokemon (id, type, weakness) -->
+    <form id="postPokemon" action="/PostPokemons" method="post">
+      <h3>Add Pokemon</h3>
+
+      <label for="idField3">ID:</label>
+      <input id="idField3" type="text" name="id" />
+
+      <label for="typeField3">Type:</label>
+      <input id="typeField3" type="text" name="type" />
+
+      <label for="weaknessField">Weakness:</label>
+      <input id="weaknessField" type="text" name="weakness" />
+
+      <input type="submit" value="Submit" />
+      <select name="method">
+        <option value="post">POST</option>
+        <option value="head">HEAD</option>
+      </select>
+    </form>
+
+    <!-- Update weight and height -->
+    <form id="updateSize" action="/UpdatePokemon" method="post">
+      <h3>Update Height and Weight</h3>
+
+      <label for="heightField">Height:</label>
+      <input id="heightField" type="text" name="height" />
+
+      <label for="weightField">Weight:</label>
+      <input id="weightField" type="text" name="weight" />
+
+      <input type="submit" value="Update" />
+      <select name="method">
+        <option value="post">POST</option>
+        <option value="head">HEAD</option>
+      </select>
+    </form>
+
+  </section>
+
+  <!-- Single Output Section -->
+  <section id="content"></section>
+
+</body>
+
+</html>
