@@ -5,6 +5,161 @@
   <title>Our simple HTTP server</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
   <script>
+    const handleResponse = async (response, method) => {
+      const content = document.querySelector('#content');
+
+      switch (response.status) {
+        case 200:
+          content.innerHTML = '<b>Success!</b>';
+          break;
+        case 201:
+          content.innerHTML = '<b>Created</b>';
+          break;
+        case 400:
+          content.innerHTML = '<b>Bad Request!</b>';
+          break;
+        case 204:
+          content.innerHTML = '<b>Updated (No Content)</b>';
+          break;
+        case 404:
+          content.innerHTML = 'Not Found';
+          break;
+        default:
+          content.innerHTML = `Error code not implemented by client.`;
+      }
+
+      if (method === 'get') {
+        const obj = await response.json();
+        const jsonstring = JSON.stringify(obj);
+
+        content.innerHTML += `<p>${jsonstring}</p>`;
+        console.log(jsonstring);
+      }
+      else {
+
+      }
+
+    };
+
+    const sendGet = async (form) => {
+      const url = form.getAttribute('action');
+      const method = form.querySelector('select[name="method"]').value;
+
+      const nameField = form.querySelector('input[name="name"]');
+      const idField = form.querySelector('input[name="id"]');
+      const typeField = form.querySelector('input[name="type"]');
+
+      const name = nameField ? nameField.value : '';
+      const id = idField ? idField.value : '';
+      const type = typeField ? typeField.value : '';
+
+      const fullUrl = `${url}?name=${name}&id=${id}&type=${type}`;
+
+      const response = await fetch(fullUrl, {
+        method: method.toUpperCase(),
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+
+      handleResponse(response, method);
+    };
+
+    const sendPost = async (form) => {
+
+      const url = form.getAttribute('action');
+      const method = form.querySelector('select[name="method"]').value;
+
+      const id = form.querySelector('#idField3').value;
+      const name = form.querySelector('#nameField3').value;
+      const type = form.querySelector('#typeField3').value;
+
+      const dataType = 'application/json';
+
+      // if the method is head
+      if (method === 'head') {
+        const response = await fetch(url, {
+          method: method.toUpperCase(),
+          headers: {
+            'Accept': 'application/json'
+          },
+        });
+        return handleResponse(response, method);
+      }
+
+      const pokemon = {
+        id: id,
+        name: name,
+        type: [type]
+      };
+
+      const formData = JSON.stringify(pokemon);
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': dataType,
+          'Accept': 'application/json',
+        },
+        body: formData,
+      });
+
+      handleResponse(response, method);
+    };
+
+    const init = () => {
+      const getAllPokemon = document.querySelector('#getAllPokemon');
+      const getAll = (e) => {
+        e.preventDefault();
+        sendGet(getAllPokemon);
+        return false;
+      };
+      getAllPokemon.addEventListener('submit', getAll);
+
+      const searchByNameIdType = document.querySelector('#searchByNameIdType');
+      const searchAll = (e) => {
+        e.preventDefault();
+        sendGet(searchByNameIdType);
+        return false;
+      };
+      searchByNameIdType.addEventListener('submit', searchAll);
+
+
+      const searchByName = document.querySelector('#searchByName');
+      const searchName = (e) => {
+        e.preventDefault();
+        sendGet(searchByName);
+        return false;
+      };
+      searchByName.addEventListener('submit', searchName);
+
+      const searchByIdType = document.querySelector('#searchByIdType');
+      const searchIdType = (e) => {
+        e.preventDefault();
+        sendGet(searchByIdType);
+        return false;
+      };
+      searchByIdType.addEventListener('submit', searchIdType);
+
+
+      const postPokemon = document.querySelector('#postPokemon');
+      const addPokemon = (e) => {
+        e.preventDefault();
+        sendPost(postPokemon);
+        return false;
+      };
+      postPokemon.addEventListener('submit', addPokemon);
+
+      const updateSize = document.querySelector('#updateSize');
+      const updatePokemon = (e) => {
+        e.preventDefault();
+        sendPost(updateSize);
+        return false;
+      };
+      updateSize.addEventListener('submit', updatePokemon);
+    };
+
+    window.onload = init;
 
   </script>
 </head>
@@ -76,15 +231,15 @@
       </select>
     </form>
 
-    <!-- Post Pokemon (id, type, weakness) -->
+    <!-- Post Pokemon id, name, weakness -->
     <form id="postPokemon" action="/PostPokemons" method="post">
       <h3>Add Pokemon</h3>
 
       <label for="idField3">ID:</label>
       <input id="idField3" type="text" name="id" />
 
-      <label for="typeField3">Type:</label>
-      <input id="typeField3" type="text" name="type" />
+      <label for="nameField3">Name:</label>
+      <input id="nameField3" type="text" name="name" />
 
       <label for="weaknessField">Weakness:</label>
       <input id="weaknessField" type="text" name="weakness" />
@@ -115,7 +270,6 @@
 
   </section>
 
-  <!-- Single Output Section -->
   <section id="content"></section>
 
 </body>
