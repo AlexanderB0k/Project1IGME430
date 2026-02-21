@@ -47,30 +47,27 @@ const handlePost = (request, response, parsedUrl) => {
 };
 
 const handleGet = (request, response, parsedUrl) => {
-    if (parsedUrl.pathname === '/style.css') {
-        return htmlHandler.getCSSResponse(request, response);
-    }
-
     if (parsedUrl.pathname === '/') {
         return htmlHandler.getIndexResponse(request, response);
     }
-
-    if (parsedUrl.pathname === '/GetAllPoke') {
+    else if (parsedUrl.pathname === '/style.css') {
+        return htmlHandler.getCSSResponse(request, response);
+    }
+    else if (parsedUrl.pathname === '/GetAllPoke') {
         return responseHandler.getAllPoke(request, response);
     }
-
-    if (parsedUrl.pathname === '/GetName') {
-        return responseHandler.getPokebyName(request, response);
+    else if (parsedUrl.pathname === '/GetName') {
+        return responseHandler.getPokebyName(request, response, parsedUrl);
     }
-
-    if (parsedUrl.pathname === '/GetPokemons') {
-        return responseHandler.getPokeTypeandID(request, response);
+    else if (parsedUrl.pathname === '/GetPokemons') {
+        return responseHandler.getPokeTypeandID(request, response, parsedUrl);
     }
-
-    if (parsedUrl.pathname === '/notReal') {
+    else if (parsedUrl.pathname === '/GetPokemonbyNameIDType') {
+        return responseHandler.getPokeNameIDandType(request, response, parsedUrl);
+    }
+    else if (parsedUrl.pathname === '/notReal') {
         return responseHandler.notFound(request, response);
     }
-
     return responseHandler.notFound(request, response);
 };
 

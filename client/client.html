@@ -45,15 +45,29 @@
       const url = form.getAttribute('action');
       const method = form.querySelector('select[name="method"]').value;
 
-      const nameField = form.querySelector('input[name="name"]');
-      const idField = form.querySelector('input[name="id"]');
-      const typeField = form.querySelector('input[name="type"]');
+      const nameInput = form.querySelector('input[name="name"]');
+      const idInput = form.querySelector('input[name="id"]');
+      const typeInput = form.querySelector('input[name="type"]');
 
-      const name = nameField ? nameField.value : '';
-      const id = idField ? idField.value : '';
-      const type = typeField ? typeField.value : '';
+      const nameField = nameInput ? nameInput.value : '';
+      const idField = idInput ? idInput.value : '';
+      const typeField = typeInput ? typeInput.value : '';
 
-      const fullUrl = `${url}?name=${name}&id=${id}&type=${type}`;
+      let queryString = '';
+
+      if (nameField) queryString += `name=${nameField}&`;
+      if (idField) queryString += `id=${idField}&`;
+      if (typeField) queryString += `type=${typeField}&`;
+
+      if (queryString.endsWith('&')) {
+        queryString = queryString.slice(0, -1);
+      }
+
+      let fullUrl = url;
+
+      if (queryString.length > 0) {
+        fullUrl += '?' + queryString;
+      }
 
       const response = await fetch(fullUrl, {
         method: method.toUpperCase(),
@@ -181,7 +195,7 @@
     <br>
 
     <!-- Get by name, id, and type -->
-    <form id="searchByNameIdType" action="/GetAllPoke" method="get">
+    <form id="searchByNameIdType" action="/GetPokemonbyNameIDType" method="get">
       <h3>Search by Pokeman type</h3>
 
       <label for="nameField1">Name:</label>
@@ -254,6 +268,9 @@
     <!-- Update weight and height -->
     <form id="updateSize" action="/UpdatePokemon" method="post">
       <h3>Update Height and Weight</h3>
+
+      <label for="nameField4">Name:</label>
+      <input id="nameField4" type="text" name="name" />
 
       <label for="heightField">Height:</label>
       <input id="heightField" type="text" name="height" />
