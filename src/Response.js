@@ -115,7 +115,9 @@ const getPokeTypeandID = (request, response, parsedUrl) => {
   }
 
   if (id) {
-    filteredPokemon = filteredPokemon.filter((poke) => String(poke.id) = String(id));
+    filteredPokemon = filteredPokemon.filter((poke) =>
+      String(poke.id) === String(id)
+    );
   }
 
   if (!filteredPokemon) {
@@ -126,54 +128,83 @@ const getPokeTypeandID = (request, response, parsedUrl) => {
 
 }
 
-const postIDNameandWeakness = (request, response, parsedURL) => {
+const postIDNameandType = (request, response, parsedURL) => {
   const responseJson = {
-    message: 'Invalid or empty ID, name, and Weakness'
+    message: 'Invalid or empty ID, name, and type'
   }
 
   const responseAlreadyexists = {
     message: 'The data for the name already exists'
   }
-  const id = parsedURL.searchParams.get('id');
-  const name = parsedURL.searchParams.get('name');
-  const weakness = parsedURL.searchParams.get('weakness');
+  const { id, name, type } = request.body
+
+  const idExists = pokemonData.some((p) => String(p.id) === String(id));
+  const nameExists = pokemonData.some((p) => p.name.toLowerCase() === name.toLowerCase());
 
   const pokemon = pokemonData;
 
   //Checks there is a an id, type and weakness
-  if (!id || !name || !weakness) {
+  if (!id || !name || !type) {
     return responseJson(request, response, 400, responseJson);
   }
 
   //check if the names or id exist in the json or not
-  if (pokemon.filter((poke) => poke.name.toLowerCase() === name.toLowerCase()) ||
-    pokemon.filter((poke) => String(poke.id) = String(id))) {
+  if (idExists || nameExists) {
     return respondJson(request, response, 400, responseAlreadyexists);
   }
 
-  const newUser = {
-    id: {
-
-    },
-    name: {
-
-    },
-    weakness: {
-      []
-    }
+  const newPokemon = {
+    id: id,
+    name: name,
+    type: [type],
   }
-  respondJson(request, response, 204, pokemon);
+
+  pokemonData.push(newPokemon);
+
+  respondJson(request, response, 201, { pokemon: newPokemon });
 
 }
-/*
-
-
-
 
 const postWeightandHeight = (request, response) => {
-    
+  const responseJson = {
+    message: 'Invalid name'
+  }
+
+  const responseAlreadyexists = {
+    message: 'The name that you trying to edit does not exist'
+  }
+
+  const { name, weight, height } = request.body;
+
+  const pokemon = pokemonData;
+
+  if (!name) {
+    return respondJson(request, response, 400, responseInvalid);
+  }
+
+  //
+  const nameExists = pokemonData.filter(
+    (p) => p.name.toLowerCase() === String(name).toLowerCase()
+  );
+
+  if (!nameExists) {
+    return respondJson(request, response, 400, responseDoesNotExist);
+  }
+
+  const pokemonToUpdate = nameExists[0];
+
+  //updates the weight
+  if (weight) {
+    pokemonToUpdate.weight = weight;
+  }
+
+  //updates the height
+  if (height) {
+    pokemonToUpdate.height = height;
+  }
+
+  return respondJson(request, response, 204, { pokemon: pokemonData });
 }
-*/
 
 const notFound = (request, response) => {
   respondJson(request, response, 404, {
@@ -187,11 +218,9 @@ module.exports = {
   getAllPoke,
   getPokebyName,
   getPokeNameIDandType,
-  getPokeTypeandID,
-  /*
-  postIDTypeandWeakness,
   postWeightandHeight,
-  */
+  getPokeTypeandID,
+  postIDNameandType,
   notImplemented,
   notFound,
 };

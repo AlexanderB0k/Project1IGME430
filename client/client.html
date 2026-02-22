@@ -80,42 +80,42 @@
     };
 
     const sendPost = async (form) => {
-
       const url = form.getAttribute('action');
       const method = form.querySelector('select[name="method"]').value;
 
-      const id = form.querySelector('#idField3').value;
-      const name = form.querySelector('#nameField3').value;
-      const type = form.querySelector('#typeField3').value;
-
       const dataType = 'application/json';
 
-      // if the method is head
       if (method === 'head') {
         const response = await fetch(url, {
           method: method.toUpperCase(),
-          headers: {
-            'Accept': 'application/json'
-          },
+          headers: { Accept: 'application/json' },
         });
         return handleResponse(response, method);
       }
 
-      const pokemon = {
-        id: id,
-        name: name,
-        type: [type]
-      };
+      let pokemon;
 
-      const formData = JSON.stringify(pokemon);
+      if (url === '/UpdatePokemon') {
+        const name = form.querySelector('input[name="name"]').value;
+        const height = form.querySelector('input[name="height"]').value;
+        const weight = form.querySelector('input[name="weight"]').value;
+
+        pokemon = { name, height, weight };
+      } else if (url === '/PostPokemons') {
+        const id = form.querySelector('input[name="id"]').value;
+        const name = form.querySelector('input[name="name"]').value;
+        const type = form.querySelector('input[name="type"]').value;
+
+        pokemon = { id, name, type: [type] };
+      }
 
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': dataType,
-          'Accept': 'application/json',
+          Accept: 'application/json',
         },
-        body: formData,
+        body: JSON.stringify(pokemon),
       });
 
       handleResponse(response, method);
@@ -255,8 +255,8 @@
       <label for="nameField3">Name:</label>
       <input id="nameField3" type="text" name="name" />
 
-      <label for="weaknessField">Weakness:</label>
-      <input id="weaknessField" type="text" name="weakness" />
+      <label for="typeField3">Type:</label>
+      <input id="typeField3" type="text" name="type" />
 
       <input type="submit" value="Submit" />
       <select name="method">

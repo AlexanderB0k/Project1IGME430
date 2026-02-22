@@ -38,7 +38,7 @@ const parseBody = (request, response, handler) => {
 
 const handlePost = (request, response, parsedUrl) => {
     if (parsedUrl.pathname === '/PostPokemons') {
-        parseBody(request, response, responseHandler.postIDTypeandWeakness);
+        parseBody(request, response, responseHandler.postIDNameandType);
     } else if (parsedUrl.pathname === '/UpdatePokemon') {
         parseBody(request, response, responseHandler.postWeightandHeight);
     } else {
