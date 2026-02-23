@@ -3,7 +3,7 @@
 
 <head>
   <title>Our simple HTTP server</title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" type="text/css" href="./node_modules/bulma/css/bulma.css">
   <script>
     const handleResponse = async (response, method) => {
       const content = document.querySelector('#content');
@@ -180,7 +180,7 @@
 
 <body>
   <section id="top">
-    <h1>Project 1</h1>
+    <h1 class="title is-size-7">Pokemon search project</h1>
 
     <!-- Get all Pokemon -->
     <form id="getAllPokemon" action="/GetAllPoke" method="get">
@@ -287,7 +287,7 @@
 
   </section>
 
-  <section id="content"></section>
+  <section id="content" class="is-size-5 has-text-weight-light"></section>
 
 </body>
 

@@ -19,3 +19,21 @@ html, body {
   font-size: 2em;
   text-align: center;
 }
+.button {
+  /* Overrides the global value */
+  --bulma-size-medium: 1.5rem;
+}
+
+.title{
+  --bulma-is-size-1: 2rem;
+}
+
+.content{
+  --bulma-is-size-3: 4rem;
+  --bulma-flex-direction: column;
+  --bulma-justify-content: space-evenly;
+}
+
+.header{
+  --bulma-size-small: 2rem;
+}
