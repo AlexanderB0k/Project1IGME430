@@ -3,7 +3,8 @@
 
 <head>
   <title>Our simple HTTP server</title>
-  <link rel="stylesheet" type="text/css" href="./node_modules/bulma/css/bulma.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/bulma.css">
   <script>
     const handleResponse = async (response, method) => {
       const content = document.querySelector('#content');
@@ -180,109 +181,144 @@
 
 <body>
   <section id="top">
-    <h1 class="title is-size-7">Pokemon search project</h1>
+    <h1 class="title is-size-1">Pokemon search project</h1>
+
+    <a href="/DocumentAPI" class="title is-4">
+      This is a linked title
+    </a>
 
     <!-- Get all Pokemon -->
     <form id="getAllPokemon" action="/GetAllPoke" method="get">
-      <h3>Get All Pokemon</h3>
-      <input type="submit" value="Fetch" />
-      <select name="method">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
-      </select>
+      <h3 class="title is-4">Get All Pokemon</h3>
+
+      <input class="button is-link" type="submit" value="Fetch" />
+      <div class="select">
+        <select name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+      </div>
     </form>
 
     <br>
 
     <!-- Get by name, id, and type -->
     <form id="searchByNameIdType" action="/GetPokemonbyNameIDType" method="get">
-      <h3>Search by Pokeman type</h3>
+      <h3 class="title is-4 has-text-left is-capitalized">Search by Pokeman type</h3>
 
-      <label for="nameField1">Name:</label>
-      <input id="nameField1" type="text" name="name" />
+      <div class="field is-grouped">
+        <div class="control is-half">
+          <label for="nameField1">Name:</label>
+          <input id="nameField1" class="input is-small" type="text" name="name" />
 
-      <label for="idField1">ID:</label>
-      <input id="idField1" type="text" name="id" />
+          <label for="idField1">ID:</label>
+          <input id="idField1" class="input is-small" type="text" name="id" />
 
-      <label for="typeField1">Type:</label>
-      <input id="typeField1" type="text" name="type" />
+          <label for="typeField1">Type:</label>
+          <input id="typeField1" class="input is-small" type="text" name="type" />
+        </div>
+      </div>
 
-      <input type="submit" value="Search" />
-      <select name="method">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
-      </select>
+
+      <input class="button is-link" type="submit" value="Search" />
+      <div class="select">
+        <select name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+      </div>
     </form>
 
     <!-- Get by name -->
     <form id="searchByName" action="/GetName" method="get">
-      <h3>Search by Name</h3>
-
-      <label for="nameField2">Name:</label>
-      <input id="nameField2" type="text" name="name" />
-
-      <input type="submit" value="Search" />
-      <select name="method">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
-      </select>
+      <h3 class="title is-4">Search by Name</h3>
+      <div class="field is-grouped">
+        <div class="control is-half">
+          <label for="nameField2">Name:</label>
+          <input id="nameField2" type="text" class="input is-small" name="name" />
+        </div>
+      </div>
+      <input class="button is-link" type="submit" value="Search" />
+      <div class="select">
+        <select name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+      </div>
     </form>
 
     <!-- Get by ID and type -->
     <form id="searchByIdType" action="/GetPokemons" method="get">
-      <h3>Search by ID and Type</h3>
+      <h3 class="title is-4">Search by ID and Type</h3>
 
-      <label for="idField2">ID:</label>
-      <input id="idField2" type="text" name="id" />
+      <div class="field is-grouped">
+        <div class="control is-half">
+          <label for="idField2">ID:</label>
+          <input id="idField2" class="input is-small" type="text" name="id" />
 
-      <label for="typeField2">Type:</label>
-      <input id="typeField2" type="text" name="type" />
+          <label for="typeField2">Type:</label>
+          <input id="typeField2" class="input is-small" type="text" name="type" />
 
-      <input type="submit" value="Search" />
-      <select name="method">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
-      </select>
+          <input type="submit" class="button is-link" value="Search" />
+          <div class="select">
+            <select name="method">
+              <option value="get">GET</option>
+              <option value="head">HEAD</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </form>
 
-    <!-- Post Pokemon id, name, weakness -->
     <form id="postPokemon" action="/PostPokemons" method="post">
-      <h3>Add Pokemon</h3>
+      <h3 class="title is-4">Add Pokemon</h3>
 
-      <label for="idField3">ID:</label>
-      <input id="idField3" type="text" name="id" />
+      <div class="field is-grouped">
+        <div class="control is-half">
+          <label for="idField3">ID:</label>
+          <input id="idField3" class="input is-small" type="text" name="id" />
 
-      <label for="nameField3">Name:</label>
-      <input id="nameField3" type="text" name="name" />
+          <label for="nameField3">Name:</label>
+          <input id="nameField3" class="input is-small" type="text" name="name" />
 
-      <label for="typeField3">Type:</label>
-      <input id="typeField3" type="text" name="type" />
+          <label for="typeField3">Type:</label>
+          <input id="typeField3" class="input is-small" type="text" name="type" />
 
-      <input type="submit" value="Submit" />
-      <select name="method">
-        <option value="post">POST</option>
-        <option value="head">HEAD</option>
-      </select>
+        </div>
+      </div>
+      <input type="submit" class="button is-link" value="Submit" />
+      <div class="select">
+        <select name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+      </div>
     </form>
 
     <!-- Update weight and height -->
     <form id="updateSize" action="/UpdatePokemon" method="post">
-      <h3>Update Height and Weight</h3>
+      <h3 class="title is-4">Update Height and Weight</h3>
 
-      <label for="nameField4">Name:</label>
-      <input id="nameField4" type="text" name="name" />
+      <div class="field is-grouped">
+        <div class="control is-half">
 
-      <label for="heightField">Height:</label>
-      <input id="heightField" type="text" name="height" />
+          <label for="nameField4">Name:</label>
+          <input id="nameField4" class="input is-small" type="text" name="name" />
 
-      <label for="weightField">Weight:</label>
-      <input id="weightField" type="text" name="weight" />
+          <label for="heightField">Height:</label>
+          <input id="heightField" class="input is-small" type="text" name="height" />
 
-      <input type="submit" value="Update" />
-      <select name="method">
-        <option value="post">POST</option>
-        <option value="head">HEAD</option>
-      </select>
+          <label for="weightField">Weight:</label>
+          <input id="weightField" class="input is-small" type="text" name="weight" />
+        </div>
+      </div>
+      <input type="submit" class="button is-link" value="Update" />
+      <div class="select">
+        <select name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+      </div>
     </form>
 
   </section>

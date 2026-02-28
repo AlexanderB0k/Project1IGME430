@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First HTML Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<script></script>
+
+<body>
+    <h1 class="is-size-1">Documentation</h1>
+    <p>Documentation for the Project. What I have for the API endpoints and how to use them.</p>
+    <h2 class="is-size-2">Endpoints</h2>
+    <ul>
+        <li><strong>GET /GetAll</strong>: Returns a list of all Pokemon in the database.</li>
+        <li><strong>GET /GetName?name=NAME</strong>: Returns the Pokemon with the specified name.</li>
+        <li><strong>GET /GetHeight?height=HEIGHT</strong>: Returns a list of Pokemon with the specified height.</li>
+        <li><strong>GET /GetWeight?weight=WEIGHT</strong>: Returns a list of Pokemon with the specified weight.</li>
+        <li><strong>POST /Add</strong>: Adds a new Pokemon to the database. Requires a JSON body with the following
+            format:
+            <pre>
+        {
+            "name": "NAME",
+            "height": HEIGHT,
+            "weight": WEIGHT
+        }
+        </pre>
+        </li>
+        <li><strong>PUT /Update</strong>: Updates an existing Pokemon in the database. Requires a JSON body with the
+            following format:
+            <pre>
+        {
+            "name": "NAME",
+            "height": HEIGHT,
+            "weight": WEIGHT
+        }
+        </pre>
+        </li>
+        <li><strong>DELETE /Delete?name=NAME</strong>: Deletes the Pokemon with the specified name from the database.
+        </li>
+
+    </ul>
+</body>
+
+</html>

@@ -128,7 +128,7 @@ const getPokeTypeandID = (request, response, parsedUrl) => {
 
 }
 
-const postIDNameandType = (request, response, parsedURL) => {
+const postIDNameandType = (request, response) => {
   const responseJson = {
     message: 'Invalid or empty ID, name, and type'
   }
@@ -179,16 +179,15 @@ const postWeightandHeight = (request, response) => {
   const pokemon = pokemonData;
 
   if (!name) {
-    return respondJson(request, response, 400, responseInvalid);
+    return respondJson(request, response, 400, responseJson);
   }
 
-  //
   const nameExists = pokemonData.filter(
     (p) => p.name.toLowerCase() === String(name).toLowerCase()
   );
 
-  if (!nameExists) {
-    return respondJson(request, response, 400, responseDoesNotExist);
+  if (!nameExists || nameExists.length === 0) {
+    return respondJson(request, response, 400, responseAlreadyexists);
   }
 
   const pokemonToUpdate = nameExists[0];
