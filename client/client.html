@@ -50,6 +50,7 @@
       const idInput = form.querySelector('input[name="id"]');
       const typeInput = form.querySelector('input[name="type"]');
 
+      //Instead of doing a if statement to check if it is empty i did this 
       const nameField = nameInput ? nameInput.value : '';
       const idField = idInput ? idInput.value : '';
       const typeField = typeInput ? typeInput.value : '';
@@ -96,6 +97,7 @@
 
       let pokemon;
 
+      //Check which form it is and then creates the pokemon object based on the form inputs. 
       if (url === '/UpdatePokemon') {
         const name = form.querySelector('input[name="name"]').value;
         const height = form.querySelector('input[name="height"]').value;

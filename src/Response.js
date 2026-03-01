@@ -136,6 +136,7 @@ const getPokeTypeandID = (request, response, parsedUrl) => {
 
 }
 
+//Post for the ID name and type of the pokemon and then the other post is for the weight and height of the pokemon. 
 const postIDNameandType = (request, response) => {
   const responseJson = {
     message: 'Invalid or empty ID, name, and type'
@@ -173,6 +174,7 @@ const postIDNameandType = (request, response) => {
 
 }
 
+//Update the weight and height of a pokemon based on their name 
 const postWeightandHeight = (request, response) => {
   const responseJson = {
     message: 'Invalid name'
@@ -213,6 +215,7 @@ const postWeightandHeight = (request, response) => {
   return respondJson(request, response, 204, { pokemon: pokemonData });
 }
 
+//Check if the endpoint is not found 
 const notFound = (request, response) => {
   respondJson(request, response, 404, {
     message: 'This page you are looking for was not found',

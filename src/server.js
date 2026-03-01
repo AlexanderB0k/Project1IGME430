@@ -36,6 +36,7 @@ const parseBody = (request, response, handler) => {
     });
 };
 
+//I used the same structure as you did for the post and get requests and then added the html responses to serve the client files.
 const handlePost = (request, response, parsedUrl) => {
     if (parsedUrl.pathname === '/PostPokemons') {
         parseBody(request, response, responseHandler.postIDNameandType);
@@ -46,6 +47,7 @@ const handlePost = (request, response, parsedUrl) => {
     }
 };
 
+//seperated the handle get function and to make it easier to read 
 const handleGet = (request, response, parsedUrl) => {
     if (parsedUrl.pathname === '/') {
         return htmlHandler.getIndexResponse(request, response);
