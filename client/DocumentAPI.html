@@ -5,44 +5,249 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First HTML Page</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/bulma.css">
 </head>
 <script></script>
 
+<!-- 
+Get All Pokemon /GetAllPoke 
+-->
 <body>
-    <h1 class="is-size-1">Documentation</h1>
-    <p>Documentation for the Project. What I have for the API endpoints and how to use them.</p>
-    <h2 class="is-size-2">Endpoints</h2>
-    <ul>
-        <li><strong>GET /GetAll</strong>: Returns a list of all Pokemon in the database.</li>
-        <li><strong>GET /GetName?name=NAME</strong>: Returns the Pokemon with the specified name.</li>
-        <li><strong>GET /GetHeight?height=HEIGHT</strong>: Returns a list of Pokemon with the specified height.</li>
-        <li><strong>GET /GetWeight?weight=WEIGHT</strong>: Returns a list of Pokemon with the specified weight.</li>
-        <li><strong>POST /Add</strong>: Adds a new Pokemon to the database. Requires a JSON body with the following
-            format:
-            <pre>
-        {
-            "name": "NAME",
-            "height": HEIGHT,
-            "weight": WEIGHT
-        }
-        </pre>
-        </li>
-        <li><strong>PUT /Update</strong>: Updates an existing Pokemon in the database. Requires a JSON body with the
-            following format:
-            <pre>
-        {
-            "name": "NAME",
-            "height": HEIGHT,
-            "weight": WEIGHT
-        }
-        </pre>
-        </li>
-        <li><strong>DELETE /Delete?name=NAME</strong>: Deletes the Pokemon with the specified name from the database.
-        </li>
+    <h1 class="is-size-1 is-bold has-text-white">Documentation</h1>
+    <h2 class="is-size-2 has-text-light has-background-black">Endpoints</h2>
+    <h3 class="is-size-3 has-text-white	">Get All Pokemon /GetAllPoke</h3>
+    <h4 class="is-size-4 has-text-info">Query Parameters: No supported query Params</h4>
+    <h5 class="has-text-primary-30">Method: GET</h5>
+    <p>Description: This endpoint retrieves all the Pokemon data from the server. It returns a JSON object containing an
+        array of all the Pokemon.</p>
+    <p class="has-text-warning is-italic is-size-4">Example Response:</p>
 
-    </ul>
+    <h3 class="has-text-warning">Request: /GetAllPoke</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+    "pokemon": [
+            {
+                "name": "Bulbasaur",
+                "type": "Grass/Poison",
+                "abilities": ["Overgrow", "Chlorophyll"],
+                "stats": {
+                    "hp": 45,
+                    "attack": 49,
+                    "defense": 49,
+                    "speed": 45
+                }
+            },
+            {
+                "name": "Charmander",
+                "type": "Fire",
+                "abilities": ["Blaze", "Solar Power"],
+                "stats": {
+                    "hp": 39,
+                    "attack": 52,
+                    "defense": 43,
+                    "speed": 65
+                }
+            },
+            ...
+        ]
+    }
+</pre>
+    <!-- 
+Get Pokemon by Name, ID and Type /GetPokemonbyNameIDType
+-->
+    <h3 class="is-size-3 has-text-white	">Get Pokemon by Name, ID and Type /GetPokemonbyNameIDType</h3>
+    <h4 class="is-size-4 has-text-info">Query Parameters: (Optional) Name: Name of the Pokemon, (Optional) Id: Their Id
+        associated on the JSON, (Optional) Type: What type of Pokemon they are </h4>
+    <h5 class="has-text-primary-30">Method: GET</h5>
+    <p>Description: This endpoint retrieves all the Pokemon data from the server. It returns a JSON object containing an
+        array of all the Pokemon.</p>
+    <p class="has-text-warning is-italic is-size-4">Example Response:</p>
+
+    <h3 class="has-text-warning">Request: /GetPokemonbyNameIDType?name=Charmander&type=Fire</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+    "pokemon": [
+            {
+                "name": "Charmander",
+                "type": "Fire",
+                "abilities": ["Blaze", "Solar Power"],
+                "stats": {
+                    "hp": 39,
+                    "attack": 52,
+                    "defense": 43,
+                    "speed": 65
+                }
+            },
+            ...
+        ]
+    }
+</pre>
+
+
+    <!-- 
+Get Pokemon by ID and Type /GetPokemon
+-->
+
+    <h3 class="is-size-3 has-text-white	">Get All Pokemon /GetPokemons</h3>
+    <h4 class="is-size-4 has-text-info">Query Parameters: (Optional) ID, (Optional) Type</h4>
+    <h5 class="has-text-primary-30">Method: GET</h5>
+    <p>Description: This endpoint retrieves a specific Pokemon by ID and Type. It returns a JSON object containing the
+        Pokemon's data.</p>
+    <p class="has-text-warning is-italic is-size-4">Example Response:</p>
+
+    <h3 class="has-text-warning">Request: /GetPokemons?id=6&type=Water</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+    "pokemon": [
+            {
+                "id": 7,
+                "num": "007",
+                "name": "Squirtle",
+                "img": "http://www.serebii.net/pokemongo/pokemon/007.png",
+                "type": [
+                "Water"
+                ],
+                "height": "0.51 m",
+                "weight": "9.0 kg",
+                "weaknesses": [
+                "Electric",
+                "Grass"
+                ],
+                "next_evolution": [
+                    {
+                        "num": "008",
+                        "name": "Wartortle"
+                    },
+                    {
+                        "num": "009",
+                        "name": "Blastoise"
+                    }
+                ]
+            },
+        ]
+    }
+</pre>
+
+    <!-- 
+Get Pokemon /GetPokemons
+-->
+
+    <h3 class="is-size-3 has-text-white	">Get All Pokemon /GetPokemons</h3>
+    <h4 class="is-size-4 has-text-info">Query Parameters: (Optional) Name: Name of the Pokemon, (Optional) Id: Their Id
+        associated on the JSON, (Optional) Type: What type of Pokemon they are </h4>
+    <h5 class="has-text-primary-30">Method: GET</h5>
+    <p>Description: This endpoint retrieves a specific Pokemon by name. It returns a JSON object containing the
+        Pokemon's data.</p>
+    <p class="has-text-warning is-italic is-size-4">Example Response:</p>
+
+    <h3 class="has-text-warning">Request: /GetName?name=Bulbasaur</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+    "pokemon": [
+        {
+            "id": 1,
+            "num": "001",
+            "name": "Bulbasaur",
+            "img": "http://www.serebii.net/pokemongo/pokemon/001.png",
+            "type": [
+            "Grass",
+            "Poison"
+            ],
+            "height": "0.71 m",
+            "weight": "6.9 kg",
+            "weaknesses": [
+            "Fire",
+            "Ice",
+            "Flying",
+            "Psychic"
+                ],
+                    "next_evolution": [
+                    {
+                        "num": "002",
+                        "name": "Ivysaur"
+                    },
+                    {
+                        "num": "003",
+                        "name": "Venusaur"
+                    }
+                ]
+            },
+        ]
+    }
+</pre>
+    <!-- 
+Get Pokemon by ID and Type /GetPokemons
+-->
+    <h3 class="is-size-3 has-text-white	">Creates a pokemon /PostPokemons</h3>
+    <h4 class="is-size-4 has-text-info">Body Params: Name type: string - Name of the Pokemon, Type type: string - Type
+        of the Pokemon, ID type: integer - ID of the Pokemon </h4>
+    <h5 class="has-text-primary-30">Method: POST</h5>
+    <p>Description: This endpoint creates a Pokemon by with their name, type and id. It returns a JSON object containing
+        the
+        Pokemon's data.</p>
+    <p class="has-text-warning is-italic is-size-4">Example Response:</p>
+
+    <h3 class="has-text-warning">Request: /PostPokemons</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+    "pokemon": [
+        {
+            "id": 152,
+            "num": "152",
+            "name": "Chikorita",
+            "type": [
+            "Grass"
+            ],
+        ]
+    }
+}
+</pre>
+    <h3 class="has-text-warning">Request: /PostPokemons (If the user doesn't provide all required fields)</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+   404 error: Pokemon can't be created without a name, type and id 
+}
+</pre>
+
+    <h3 class="is-size-3 has-text-white	">Update a pokemon /UpdatePokemon</h3>
+    <h4 class="is-size-4 has-text-info">Body Params: Name type: string - Name of the Pokemon, Type type: string - Type
+        of the Pokemon, ID type: integer - ID of the Pokemon </h4>
+    <h5 class="has-text-primary-30">Method: POST</h5>
+    <p>Description: This endpoint updates a Pokemon by with their name, type and id. It returns a JSON object containing
+        the
+        Pokemon's data.</p>
+    <p class="has-text-warning is-italic is-size-4">Example Response:</p>
+
+    <h3 class="has-text-warning">Request: /UpdatePokemon</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+    "pokemon": [
+        {
+            "id": 152,
+            "num": "152",
+            "name": "Chikorita",
+            "type": [
+            "Grass"
+            ],
+        ]
+    }
+}
+</pre>
+    <h3 class="has-text-warning">Request: /UpdatePokemon (If the user doesn't provide all required fields)</h3>
+    <h3 class="has-text-warning">Result:</h3>
+    <pre>
+{   
+   404 error: Pokemon can't be updated without a name, type and id 
+}
+</pre>
+
 </body>
-
 </html>

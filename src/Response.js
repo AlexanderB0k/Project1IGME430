@@ -2,6 +2,7 @@ const pokemonIndex = require('./pokedex.json');
 
 const pokemonData = pokemonIndex.pokemon || pokemonIndex;
 
+// Helper function to send JSON responses
 const respondJson = (request, response, status, object) => {
   const content = JSON.stringify(object);
 
@@ -26,10 +27,12 @@ const notImplemented = (request, response) => {
   });
 };
 
+//Get All Pokemon just returns the pokemon data from the json file
 const getAllPoke = (request, response) => {
   respondJson(request, response, 200, { pokemon: pokemonData });
 };
 
+//All of the structure is the same as your code exercises but I just added the functionality to filter the pokemon data based on the query parameters that the client sends in.
 const getPokebyName = (request, response, parsedUrl) => {
 
   const responseData = {
@@ -60,6 +63,8 @@ const getPokebyName = (request, response, parsedUrl) => {
   });
 };
 
+//This function is similar to the getPokebyName function but it filters the pokemon data based on the type and id query parameters that the client sends in. 
+//Used filter for the name id and the type 
 const getPokeNameIDandType = (request, response, parsedUrl) => {
 
   const messageNotFound = {
@@ -99,6 +104,8 @@ const getPokeNameIDandType = (request, response, parsedUrl) => {
     pokemon: filteredPokemon,
   });
 };
+
+//This function is similar to the getPokeNameIDandType function but it filters the pokemon data based on the type and id query parameters that the client sends in.
 const getPokeTypeandID = (request, response, parsedUrl) => {
   const responseData = {
     message: "The pokemon type and id isn't here",
@@ -120,7 +127,8 @@ const getPokeTypeandID = (request, response, parsedUrl) => {
     );
   }
 
-  if (!filteredPokemon) {
+  // If no query parameters were provided, return a 404 error
+  if (!filteredPokemon || filteredPokemon.length === 0) {
     return respondJson(request, response, 404, messageNotFound);
   }
 
@@ -145,7 +153,7 @@ const postIDNameandType = (request, response) => {
 
   //Checks there is a an id, type and weakness
   if (!id || !name || !type) {
-    return responseJson(request, response, 400, responseJson);
+    return respondJson(request, response, 400, responseJson);
   }
 
   //check if the names or id exist in the json or not

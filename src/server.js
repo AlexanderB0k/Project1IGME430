@@ -56,6 +56,9 @@ const handleGet = (request, response, parsedUrl) => {
     else if (parsedUrl.pathname === '/bulma.css') {
         return htmlHandler.getBulmaResponse(request, response);
     }
+    else if (parsedUrl.pathname === '/DocumentAPI') {
+        return htmlHandler.getDocumentAPIResponse(request, response);
+    }
     else if (parsedUrl.pathname === '/GetAllPoke') {
         return responseHandler.getAllPoke(request, response);
     }
